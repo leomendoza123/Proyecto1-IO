@@ -1,0 +1,35 @@
+*** Como correr: 
+
+Se compila el proyecto con ejecutando el comando "make"
+Se corre el proyecto usando "./main"
+
+
+**Requisitos antes de correr: 
+
+*pdflatex:
+sudo apt-get install texlive-latex-base
+
+
+*Libreria Tkiz:
+sudo apt-get install pgf
+
+*Soporte latex standalone:
+apt-get install texlive-latex-extra
+
+
+*Soporte para gtk:
+sudo apt-get install libgtk2.0-dev
+sudo apt-get install libgtk-3-dev
+
+
+
+**Requisitos para modicar archivo glade de interfaz: 
+
+sudo apt-get install glade
+
+
+
+
+***Estrutura de datos ejemplo: 
+
+*Grafos: la primera fila es el numero de nodos, la segunda fila es el numero de vertices y luego la lista de vertices con el formato "<vertice de salida>, <vertice de llegada>, <costo>"

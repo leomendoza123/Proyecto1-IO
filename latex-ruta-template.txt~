@@ -1,0 +1,65 @@
+% Drawing a graph
+% Author: Stefan Kottwitz
+% https://www.packtpub.com
+
+\documentclass[a4paper,openright,12pt]{report}
+\usepackage{graphicx} % graficos
+\usepackage{tkz-graph}
+\GraphInit[vstyle = Shade]
+\tikzset{
+  LabelStyle/.style = { rectangle, rounded corners, draw,
+                        minimum width = 2em, fill = yellow!50,
+                        text = red, font = \bfseries },
+  VertexStyle/.append style = { inner sep=2pt,
+                                font = \Large\bfseries},
+  EdgeStyle/.append style = {->, bend left} }
+
+\begin{document}
+
+\begin{titlepage}
+
+\begin{center}
+\vspace*{-1in}
+\begin{figure}[htb]
+\begin{center}
+\end{center}
+\end{figure}
+
+TEC Costa Rica\\
+\vspace*{0.15in}
+Escuela de computación \\
+\vspace*{0.6in}
+\begin{large}
+Tarea programada 1:\\
+\end{large}
+\vspace*{0.2in}
+\begin{Large}
+\textbf{Algoritmo de Floyd para resolver la ruta optima en grafos} \\
+\end{Large}
+\vspace*{0.3in}
+\begin{large}
+Este trabajo fue realizado por Leonardo Mendoza y Patrick Maynard\\
+\end{large}
+\vspace*{0.3in}
+\rule{80mm}{0.1mm}\\
+\vspace*{0.1in}
+\begin{large}
+Ejemplo dinámico: 
+\end{large}
+\end{center}
+
+\end{titlepage}
+
+\begin{tikzpicture}
+  \SetGraphUnit{5}
+
+
+\end{tikzpicture}
+
+
+
+
+
+
+
+\end{document}

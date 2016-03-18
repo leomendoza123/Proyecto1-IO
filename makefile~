@@ -1,0 +1,19 @@
+NAME=myguiapp
+CFLAGS=-g -Wall -o $(NAME)
+GTKFLAGS=-export-dynamic `pkg-config --cflags --libs gtk+-3.0`
+SRCS=main.c
+Elemento1= RutaOptima.c
+CC=gcc
+ 
+all: main Ruta
+ 
+# compiling the source file.
+main: $(SRCS)
+	$(CC) $(CFLAGS) $(SRCS) $(GTKFLAGS)
+
+Ruta:
+	  gcc -o Ruta RutaOptima.c
+ 
+# cleaning everything that can be automatically recreated with "make".
+clean:
+	/bin/rm -f $(NAME)
