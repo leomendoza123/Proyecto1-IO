@@ -42,7 +42,7 @@ void on_window_main_destroy()
 void ruta_clicked (GtkWidget *widget){
    	printf("Ruta clicked:\n");
 	
-	openfile ();
+	openfile (0);
 	printf( "%s \n", filename);
 	system(filename); 
 	 
@@ -51,13 +51,19 @@ void ruta_clicked (GtkWidget *widget){
 void  mochila_clicked( GtkButton *button,         gpointer   data )
 {
     printf("Mochila clicked:\n");
+    openfile (1);
+    //printf( "%s \n", filename);
+    system(filename);
 }
 G_MODULE_EXPORT void remplazo_clicked( GtkButton *button,  gpointer   data )
 {
     printf("Remplazo clicked:\n");
+    openfile (2);
+    printf( "%s \n", filename);
+    system(filename);
 }
 
-void openfile (){
+void openfile (int tarea){
 	GtkWidget *dialog;
 
 	dialog = gtk_file_chooser_dialog_new ("Open File",
@@ -66,17 +72,33 @@ void openfile (){
 					      GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
 					      GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
 					      NULL);
+	if(tarea == 0){
+		if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
+			  {
+			    filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+				char buffer[100];
+				sprintf(buffer, "./Ruta %s", filename);
 
-	if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
-	  {
-	    filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
-		char buffer[100];
-		sprintf(buffer, "./Ruta %s", filename);
 
-		
-	    	system (buffer);
-	   
-	  }
+			    	system (buffer);
+
+			  }
+	}
+	else
+		if(tarea == 1){
+			if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
+						  {
+						    filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+							char buffer[100];
+							sprintf(buffer, "./Mochila %s", filename);
+
+
+						    	system (buffer);
+
+						  }
+		}
+
+
 
 	gtk_widget_destroy (dialog);
 }
