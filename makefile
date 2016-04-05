@@ -4,9 +4,10 @@ GTKFLAGS=-export-dynamic `pkg-config --cflags --libs gtk+-3.0`
 SRCS=main.c
 Elemento1= RutaOptima.c
 Elemento2= Mochila.c
+Elemento3= Equipos.c
 CC=gcc
  
-all: main Ruta Mochila
+all: main Ruta Mochila Equipos
  
 # compiling the source file.
 main: $(SRCS)
@@ -17,9 +18,13 @@ Ruta:
 
 Mochila: 	  
 	  gcc -o Mochila Mochila.c
+	  
+Equipos:
+	  gcc -o Equipos Equipos.c
  
 # cleaning everything that can be automatically recreated with "make".
 clean:
 	/bin/rm -f $(NAME)
 	/bin/rm -f Mochila
 	/bin/rm -f Ruta
+	/bin/rm -f Equipos

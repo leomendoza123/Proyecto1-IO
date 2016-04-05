@@ -1,63 +1,94 @@
 #define _GNU_SOURCE
-#include "Articulo.h"
+#include "Equipo.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 #include <string.h>
 #include <assert.h>
 
+void imprimirResultado(int plazo, int ruta[plazo+1]){
+	int cont = 0;
+	printf("Ruta óptima = 0 -> ");
+	while(cont != plazo){
+		if(ruta[cont] == plazo){
+			printf("%d\n", ruta[cont]);
+			break;
+		}
+		else
+		{
+			printf("%d -> ",ruta[cont]);
+			cont = ruta[cont];
+		}
+	}
+}
 
-/*int mayor(int a, int b){
-	if(a<b){
+int minimo(int a, int b, int plazo,int ruta[plazo+1],int x,int y){
+	if(b<a){
+
 		return(b);
 	}
-	else
-		return(a*-1);
+	else{
+		ruta[x] = y;
+		return(a);
+	}
+
 }
 
-void imprimirTarea(int x, int y,int lista_acumulado[x][y], int tarea){
+float interes(int anho,int valor, int inflacion){
 	int cont = 0;
-	while(cont != y){
-		printf("%d\n", lista_acumulado[tarea][cont]);
+	float respuesta = (float)valor;
+	while(cont != anho){
+		respuesta = respuesta + (respuesta * (0.01 * inflacion));
+		cont ++;
+	}
+
+	return respuesta;
+
+}
+
+int Cxy(int x, int y, int inflacion, int plazo, equipo_t* lista_equipo[plazo], int lista_g[plazo+1],int vidaUtil,int inicial){
+	int cont = 0;
+	//printf("C%d%d,%d=", x,y,plazo);
+	int resultado = interes(x,inicial,inflacion);
+	while(x != y){
+		resultado = resultado + interes(x,lista_equipo[cont]->mantenimiento,inflacion) - interes(x,lista_equipo[cont]->ganancia,inflacion);
+		x++;
 		cont++;
 	}
+	resultado = resultado - interes(x,lista_equipo[cont-1]->valor,inflacion);
+	//printf("%d\n", resultado);
+	return resultado;
+
 }
 
-void equipos(int tope,int tareas, articulo_t* lista_articulos[tareas]){
-	int contTareas = 0;
-	int contTope = 0;
-	int lista_acumulado[tareas][tope];
-	//printf("Beneficio:%d\n", lista_articulos[1]->beneficio);
-	while(contTareas != tareas){
-		while(contTope != tope){
-			//printf("%s\n", "Por aquí anda la cosa");
-			//Caso de inicio; no existe acumulado del anterior todavía
-			if(contTareas == 0){
-				if(contTope < lista_articulos[0]->costo){
-					lista_acumulado[contTareas][contTope] = 0;
-				}
-				else
-					lista_acumulado[contTareas][contTope] = (int) lista_articulos[0]->beneficio * -1;
-			}
-			else{
-				//Si el costo es mayor al límite se usa el valor a la izquierda
-				if(contTope < lista_articulos[contTareas]->costo){
-					lista_acumulado[contTareas][contTope] = abs(lista_acumulado[contTareas-1][contTope]);
-				}
-				else{
-					//Se escoje el mayor entre usar la tarea + lo que sobre de costo en la tabla de la izquierda, o el valor de la tabla de la izquierda
-					lista_acumulado[contTareas][contTope] = mayor(lista_articulos[contTareas]->beneficio + abs(lista_acumulado[contTareas-1][contTope - lista_articulos[contTareas]->costo]), abs(lista_acumulado[contTareas-1][contTope]));
-				}
-			}
-			contTope++;
+
+int CXY(int x, int y, int inflacion, int plazo, equipo_t* lista_equipo[plazo], int lista_g[plazo+1],int vidaUtil,int inicial,int ruta[plazo+1]){
+	int cont = 0;
+	int diferencia = y - x;
+	int resultado = 32767;
+
+	while(cont != diferencia){
+		if(cont < vidaUtil){
+			resultado = minimo(Cxy(x,x + cont + 1,inflacion,plazo,lista_equipo,lista_g, vidaUtil,inicial) + lista_g[x+cont+1],resultado,plazo,ruta,x,x+cont+1);
 		}
-		contTope = 0;
-		contTareas++;
+		cont++;
 	}
-	imprimirTarea(tareas,tope,lista_acumulado, 3);
+	printf("G(%d) = %d\n",x,resultado);
 
+	return resultado;
 }
 
+void reemplazo(int inflacion, int plazo, equipo_t* lista_equipo[plazo], int lista_g[plazo+1],int vidaUtil,int inicial,int ruta[plazo+1]){
+	lista_g[plazo] = 0;
+	int cont = plazo-1;
+	printf("G(%d) = %d\n",plazo,0);
+	while(cont != -1){
+		//printf("G(%d) = %d",cont+1,CXY(cont,plazo,inflacion,plazo,lista_equipo,lista_g,vidaUtil,inicial));
+		lista_g[cont] = CXY(cont,plazo,inflacion,plazo,lista_equipo,lista_g,vidaUtil,inicial,ruta);
+		cont--;
+	}
+	printf("Resultado óptimo= %d\n", lista_g[0]);
+}
 
 char** str_split(char* a_str, const char a_delim)
 {
@@ -70,7 +101,7 @@ char** str_split(char* a_str, const char a_delim)
     delim[1] = 0;
 
     /* Count how many elements will be extracted. */
-    /*while (*tmp)
+    while (*tmp)
     {
         if (a_delim == *tmp)
         {
@@ -81,11 +112,11 @@ char** str_split(char* a_str, const char a_delim)
     }
 
     /* Add space for trailing token. */
-    /*count += last_comma < (a_str + strlen(a_str) - 1);
+    count += last_comma < (a_str + strlen(a_str) - 1);
 
     /* Add space for terminating null string so caller
        knows where the list of returned strings ends. */
-   /* count++;
+    count++;
 
     result = malloc(sizeof(char*) * count);
 
@@ -107,7 +138,6 @@ char** str_split(char* a_str, const char a_delim)
     return result;
 }
 
-
 int main( int argc, char *argv[] )
 {
 
@@ -120,43 +150,49 @@ int main( int argc, char *argv[] )
 		exit(EXIT_FAILURE);
 
 
-	//Número de artículos
+	//Plazo
 	getline(&line, &len, fp);
-	int numArticulos = (int) strtol(line, (char **)NULL, 10);
-	//Número de artículos
+	int plazo = (int) strtol(line, (char **)NULL, 10);
+	//Vida útil del equipo
 	getline(&line, &len, fp);
-	int tope = (int) strtol(line, (char **)NULL, 10);
+	int vidaUtil = (int) strtol(line, (char **)NULL, 10);
+	//Inflación
+	getline(&line, &len, fp);
+	int inflacion = (int) strtol(line, (char **)NULL, 10);
+	//Costo Inicial
+	getline(&line, &len, fp);
+	int inicial = (int) strtol(line, (char **)NULL, 10);
 
 
-	articulo_t* lista_articulos[numArticulos];
+	equipo_t* lista_equipo[vidaUtil];
+	int lista_g[vidaUtil+1];
+	int ruta[vidaUtil+1];
 
 	int cont = 0;
 	//Crea un struct con la información del archivo de texto
-	while(cont != numArticulos)
+	while(cont != vidaUtil)
 	   {
 		char buffer[100];
 
 		   getline(&line, &len, fp);
 		   char** tokens;
 		   tokens = str_split(line, ',');
-		   char nombre = tokens[0][0];
-		   int beneficio = (int) strtol(tokens[1], (char **)NULL, 10);
-		   int costo = (int) strtol(tokens[2], (char **)NULL, 10);
+		   int valor = (int) strtol(tokens[0], (char **)NULL, 10);
+		   int mantenimiento = (int) strtol(tokens[1], (char **)NULL, 10);
+		   int ganancia = (int) strtol(tokens[2], (char **)NULL, 10);
 
-		   lista_articulos[cont] = articulo_new(nombre,beneficio,costo);
+		   lista_equipo[cont] = equipo_new(valor,mantenimiento,ganancia);
 		   cont++;
 
 	   }
-	equipos(tope+1, numArticulos, lista_articulos);
 
+
+	//
+	//(int x, int y, int inflacion, int plazo, equipo_t* lista_equipo[plazo], int lista_g[plazo+1],int vidaUtil,int inicial)
+	//printf("%d",CXY(3,5,inflacion,plazo,lista_equipo,lista_g,vidaUtil,inicial));
+	reemplazo(inflacion,plazo,lista_equipo,lista_g,vidaUtil,inicial,ruta);
+	imprimirResultado(plazo,ruta);
 
 }
-
-
-
-
-
-
-
 
 

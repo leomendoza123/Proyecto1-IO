@@ -6,7 +6,7 @@
 #include <string.h>
 #include <assert.h>
 
-
+//Devuelve el mayor de dos números. En caso de que el mayor sea el primer número, se devuelve en forma negativa.
 int mayor(int a, int b){
 	if(a<b){
 		return(b);
@@ -14,6 +14,7 @@ int mayor(int a, int b){
 	else
 		return(a*-1);
 }
+
 
 void imprimirRuta(int tareas, int tope, int x, int y, int lista_acumulado[tareas][tope], articulo_t* lista_articulos[tareas]){
 	int contX = x;
@@ -68,10 +69,10 @@ void mochila(int tope,int tareas, articulo_t* lista_articulos[tareas]){
 	int contTareas = 0;
 	int contTope = 0;
 	int lista_acumulado[tareas][tope];
-	//printf("Beneficio:%d\n", lista_articulos[1]->beneficio);
+
 	while(contTareas != tareas){
 		while(contTope != tope){
-			//printf("%s\n", "Por aquí anda la cosa");
+
 			//Caso de inicio; no existe acumulado del anterior todavía
 			if(contTareas == 0){
 				if(contTope < lista_articulos[0]->costo){
@@ -95,7 +96,7 @@ void mochila(int tope,int tareas, articulo_t* lista_articulos[tareas]){
 		contTope = 0;
 		contTareas++;
 	}
-	//imprimirTarea(tareas,tope,lista_acumulado, 3);
+
 	printf("Matriz: \n");
 	imprimirResultado(tareas,tope,lista_acumulado,lista_articulos);
 	printf("\n");
@@ -169,7 +170,7 @@ int main( int argc, char *argv[] )
 	//Número de artículos
 	getline(&line, &len, fp);
 	int numArticulos = (int) strtol(line, (char **)NULL, 10);
-	//Número de artículos
+	//Número límite
 	getline(&line, &len, fp);
 	int tope = (int) strtol(line, (char **)NULL, 10);
 
