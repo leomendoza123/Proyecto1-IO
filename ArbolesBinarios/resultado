@@ -1,0 +1,140 @@
+% Drawing a graph
+% Author: Stefan Kottwitz
+% https://www.packtpub.com
+
+\documentclass[a4paper,openright,12pt]{report}
+\usepackage{graphicx} % graficos
+\usepackage{tkz-graph}
+\GraphInit[vstyle = Shade]
+\tikzset{
+  LabelStyle/.style = { rectangle, rounded corners, draw,
+                        minimum width = 2em, fill = yellow!50,
+                        text = red, font = \bfseries },
+  VertexStyle/.append style = { inner sep=1pt,
+                                font = \Large\bfseries},
+  EdgeStyle/.append style = {->, bend left} }
+
+\begin{document}
+
+\begin{titlepage}
+
+\begin{center}
+\vspace*{-1in}
+\begin{figure}[htb]
+\begin{center}
+\end{center}
+\end{figure}
+
+TEC Costa Rica\\
+\vspace*{0.15in}
+Escuela de computación \\
+\vspace*{0.6in}
+\begin{large}
+Tarea programada 1:\\
+\end{large}
+\vspace*{0.2in}
+\begin{Large}
+\textbf{Algoritmo de Floyd para resolver la ruta optima en grafos} \\
+\end{Large}
+\vspace*{0.3in}
+\begin{large}
+Este trabajo fue realizado por Leonardo Mendoza y Patrick Maynard\\
+\end{large}
+\vspace*{0.3in}
+\rule{80mm}{0.1mm}\\
+\vspace*{0.1in}
+\begin{large}
+Ejemplo dinámico: 
+\end{large}
+\end{center}
+
+\end{titlepage}
+
+\begin{tikzpicture}
+  \SetGraphUnit{5}
+
+ \Vertex{1} 
+  \SO(1){2} 
+  \SO(2){3} 
+  \SO(3){4} 
+  \Edge[label = 2](1)(3) 
+  \Edge[label = 20](1)(4) 
+  \Edge[label = 100](1)(2) 
+  \Edge[label = 77](3)(1) 
+  \Edge[label = 3](3)(2) 
+  \Edge[label = 7](3)(4) 
+  \Edge[label = 10](2)(4) 
+  \Edge[label = 2](2)(3) 
+  \Edge[label = 32](2)(1) 
+  \Edge[label = 1](4)(2) 
+\end{tikzpicture}
+
+
+
+
+
+
+ \begin{table}[h!] 
+ \centering 
+ \begin{tabular}{||  c  c  c  c  ||} 
+ \hline 
+ 0 & 100 & 2 & 20  \\  
+ 32 & 0 & 2 & 10  \\  
+ 77 & 3 & 0 & 7  \\  
+ 999 & 1 & 999 & 0 \\[1ex]   
+  
+ \hline 
+ \end{tabular}
+  \caption{Matris D(0)} 
+ \label{table:1} 
+ \end{table} 
+ \begin{table}[h!] 
+ \centering 
+ \begin{tabular}{||  c  c  c  c  ||} 
+ \hline 
+ 0 & 5 & 2 & 9  \\  
+ 32 & 0 & 2 & 9  \\  
+ 35 & 3 & 0 & 7  \\  
+ 33 & 1 & 3 & 0 \\[1ex]   
+  
+ \hline 
+ \end{tabular}
+  \caption{Matris D(n)} 
+ \label{table:1} 
+ \end{table} 
+ \begin{table}[h!] 
+ \centering 
+ \begin{tabular}{||  c  c  c  c  ||} 
+ \hline 
+ 0 & 3 & 0 & 3  \\  
+ 0 & 0 & 0 & 3  \\  
+ 2 & 0 & 0 & 0  \\  
+ 2 & 0 & 2 & 0 \\[1ex]   
+  
+ \hline 
+ \end{tabular}
+  \caption{Matris P(n)} 
+ \label{table:1} 
+ \end{table} 
+ \begin{table}[h!] 
+ \centering 
+ \begin{tabular}{|| c ||} 
+  \hline 
+ De 1 a 2 ir por 3 \\   
+ 
+ De 1 a 4 ir por 3 \\   
+ 
+ De 2 a 4 ir por 3 \\   
+ 
+ De 3 a 1 ir por 2 \\   
+ 
+ De 4 a 1 ir por 2 \\   
+ 
+ De 4 a 3 ir por 2 \\   
+  
+ \hline 
+ \end{tabular}
+  \caption{Lista de atajos} 
+ \label{table:1} 
+ \end{table} 
+\end{document}

@@ -1,0 +1,98 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[spanish]{babel}
+\usepackage{float}
+
+\begin{document}
+
+\title{Optimización de Arboles de busqueda Binarios Investigación de Operaciones  (2 semestre - 2016)}
+\author{Leonardo Mendoza - Patrick Maynard}
+
+\maketitle
+
+\begin{abstract}
+Un árbol binario de búsqueda también llamados BST (acrónimo del inglés Binary Search Tree) es un tipo particular de árbol binario que presenta una estructura de datos en forma de árbol usada en informática. Basado en la probabilidad de acceder que se desee localziar cada nodo, este algoritmo reordena el arbol de busqueda optimo para cada caso. 
+\end{abstract}
+
+\section{Datos iniciales}
+
+Estos son los datos iniciales ordenados y normalizados: 
+
+\centering 
+\begin{figure}[H]
+\label{my-label2}
+\begin{tabular}{|l|l|} 
+ \hline Australia & 0,02564 \\ \hline
+ Brazil & 0,03846 \\ \hline
+ Canada & 0,03846 \\ \hline
+ China & 0,16667 \\ \hline
+ France & 0,05128 \\ \hline
+ Germany & 0,06410 \\ \hline
+ India & 0,03846 \\ \hline
+ Italy & 0,03846 \\ \hline
+ Mexico & 0,03846 \\ \hline
+ Rest of the world & 0,11538 \\ \hline
+ Russia & 0,03846 \\ \hline
+ USA & 0,29487 \\ \hline
+ United Kingdom & 0,05128 \\ \hline
+\end{tabular}
+\end{figure}
+    
+\section{Tabla A}
+Esta es la table A completa.
+
+
+\centering 
+\begin{figure}[H]
+\label{my-label2}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+0,00& 0,03& 0,09& 0,17& 0,44& 0,54& 0,72& 0,83& 0,99& 1,14& 1,56& 1,69& 2,46& 2,62\\ \hline
+0,00& 0,00& 0,04& 0,12& 0,36& 0,46& 0,64& 0,76& 0,91& 1,06& 1,47& 1,59& 2,36& 2,51\\ \hline
+0,00& 0,00& 0,00& 0,04& 0,24& 0,35& 0,53& 0,64& 0,79& 0,95& 1,32& 1,44& 2,21& 2,36\\ \hline
+0,00& 0,00& 0,00& 0,00& 0,17& 0,27& 0,45& 0,56& 0,72& 0,86& 1,21& 1,32& 2,08& 2,23\\ \hline
+0,00& 0,00& 0,00& 0,00& 0,00& 0,05& 0,17& 0,24& 0,36& 0,47& 0,78& 0,90& 1,53& 1,68\\ \hline
+0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,06& 0,14& 0,24& 0,36& 0,63& 0,73& 1,36& 1,46\\ \hline
+0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,04& 0,12& 0,19& 0,42& 0,50& 1,06& 1,17\\ \hline
+0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,04& 0,12& 0,31& 0,38& 0,91& 1,01\\ \hline
+0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,04& 0,19& 0,27& 0,76& 0,86\\ \hline
+0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,12& 0,19& 0,64& 0,74\\ \hline
+0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,04& 0,37& 0,47\\ \hline
+0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,29& 0,40\\ \hline
+0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,05\\ \hline
+0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00& 0,00\\ \hline
+\end{tabular}
+\end{figure}
+    
+\section{Tabla R}
+Esta es la tabla que contiene el arbol optimo.
+
+
+\centering 
+\begin{figure}[H]
+\label{my-label2}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+0& 1& 2& 2& 4& 4& 4& 4& 4& 4& 4& 6& 10& 10\\ \hline
+0& 0& 2& 3& 4& 4& 4& 4& 4& 4& 6& 6& 10& 10\\ \hline
+0& 0& 0& 3& 4& 4& 4& 4& 4& 4& 6& 6& 10& 10\\ \hline
+0& 0& 0& 0& 4& 4& 4& 4& 4& 6& 6& 6& 10& 10\\ \hline
+0& 0& 0& 0& 0& 5& 6& 6& 6& 6& 8& 8& 10& 12\\ \hline
+0& 0& 0& 0& 0& 0& 6& 6& 7& 8& 8& 10& 12& 12\\ \hline
+0& 0& 0& 0& 0& 0& 0& 7& 8& 8& 10& 10& 12& 12\\ \hline
+0& 0& 0& 0& 0& 0& 0& 0& 8& 9& 10& 10& 12& 12\\ \hline
+0& 0& 0& 0& 0& 0& 0& 0& 0& 9& 10& 10& 12& 12\\ \hline
+0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 10& 10& 12& 12\\ \hline
+0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 11& 12& 12\\ \hline
+0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 12& 12\\ \hline
+0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 13\\ \hline
+0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0\\ \hline
+\end{tabular}
+\end{figure}
+    
+    
+
+\section{Conclusion}
+Finalmente usando la tabla R se puede deducir el árbol de busca óptimo para este caso especifico.
+
+\end{document}
