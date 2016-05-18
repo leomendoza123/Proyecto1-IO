@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[spanish]{babel}
+\usepackage{float}
+\usepackage{color}
+
+
+\begin{document}
+
+\title{Agloritmo de knapsack - Investigación De Operaciones  (2 semestre - 2016)}
+\author{Leonardo Mendoza - Patrick Maynard}
+
+\maketitle
+
+\begin{abstract}
+En algoritmia, el problema de la mochila, comúnmente abreviado por KP (del inglés Knapsack problem) es un problema de optimización combinatoria, es decir, que busca la mejor solución entre un conjunto de posibles soluciones a un problema. Modela una situación análoga al llenar una mochila, incapaz de soportar más de un peso determinado, con todo o parte de un conjunto de objetos, cada uno con un peso y valor específicos. Los objetos colocados en la mochila deben maximizar el valor total sin exceder el peso máximo.
+\end{abstract}
+
+\section{Datos iniciales}
+
+
+Capacidad de mochila: 16
+
+\centering 
+\begin{figure}[H]
+\label{my-label2}
+\begin{tabular}{|l|l|l|} 
+\hline
+Valor & Costo  & Limite\\ \hline
+ 7& 3& 1 \\ \hline
+9& 4& 1 \\ \hline
+5& 2& 1 \\ \hline
+12& 6& 1 \\ \hline
+14& 7& 1 \\ \hline
+6& 3& 1 \\ \hline
+12& 5& 1 \\ \hline
+0& 0& 0 \\ \hline
+0& 0& 0 \\ \hline
+0& 0& 0 \\ \hline
+
+\end{tabular}
+\end{figure}
+
+    
+\section{Tabla de resultados}
+
+
+\centering 
+\begin{figure}[H]
+\label{my-label2}
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
+\textcolor{black}{0} (0)&\textcolor{black}{0} (0)&\textcolor{black}{0} (0)&\textcolor{black}{0} (0)&\textcolor{black}{0} (0)&\textcolor{black}{0} (0)&\textcolor{black}{0} (0)&\\ \hline
+\textcolor{green}{0} (0)&\textcolor{red}{0} (0)&\textcolor{red}{0} (0)&\textcolor{red}{0} (0)&\textcolor{red}{0} (0)&\textcolor{red}{0} (0)&\textcolor{red}{0} (0)&\\ \hline
+\textcolor{green}{0} (0)&\textcolor{red}{0} (0)&\textcolor{red}{0} (0)&\textcolor{red}{0} (0)&\textcolor{red}{0} (0)&\textcolor{red}{0} (0)&\textcolor{red}{0} (0)&\\ \hline
+\textcolor{green}{0} (0)&\textcolor{red}{0} (0)&\textcolor{green}{5} (1)&\textcolor{red}{5} (0)&\textcolor{red}{5} (0)&\textcolor{red}{5} (0)&\textcolor{red}{5} (0)&\\ \hline
+\textcolor{green}{7} (1)&\textcolor{red}{7} (0)&\textcolor{red}{7} (0)&\textcolor{red}{7} (0)&\textcolor{red}{7} (0)&\textcolor{red}{7} (0)&\textcolor{red}{7} (0)&\\ \hline
+\textcolor{green}{7} (1)&\textcolor{green}{9} (1)&\textcolor{red}{9} (0)&\textcolor{red}{9} (0)&\textcolor{red}{9} (0)&\textcolor{red}{9} (0)&\textcolor{red}{9} (0)&\\ \hline
+\textcolor{green}{7} (1)&\textcolor{green}{9} (1)&\textcolor{green}{12} (1)&\textcolor{red}{12} (0)&\textcolor{red}{12} (0)&\textcolor{red}{12} (0)&\textcolor{red}{12} (0)&\\ \hline
+\textcolor{green}{7} (1)&\textcolor{green}{9} (1)&\textcolor{green}{14} (1)&\textcolor{red}{14} (0)&\textcolor{red}{14} (0)&\textcolor{red}{14} (0)&\textcolor{red}{14} (0)&\\ \hline
+\textcolor{green}{7} (1)&\textcolor{green}{16} (1)&\textcolor{red}{16} (0)&\textcolor{red}{16} (0)&\textcolor{red}{16} (0)&\textcolor{red}{16} (0)&\textcolor{green}{17} (1)&\\ \hline
+\textcolor{green}{7} (1)&\textcolor{green}{16} (1)&\textcolor{red}{16} (0)&\textcolor{green}{17} (1)&\textcolor{red}{17} (0)&\textcolor{green}{18} (1)&\textcolor{green}{19} (1)&\\ \hline
+\textcolor{green}{7} (1)&\textcolor{green}{16} (1)&\textcolor{green}{21} (1)&\textcolor{red}{21} (0)&\textcolor{red}{21} (0)&\textcolor{red}{21} (0)&\textcolor{red}{21} (0)&\\ \hline
+\textcolor{green}{7} (1)&\textcolor{green}{16} (1)&\textcolor{green}{21} (1)&\textcolor{red}{21} (0)&\textcolor{red}{21} (0)&\textcolor{green}{22} (1)&\textcolor{green}{24} (1)&\\ \hline
+\textcolor{green}{7} (1)&\textcolor{green}{16} (1)&\textcolor{green}{21} (1)&\textcolor{green}{24} (1)&\textcolor{red}{24} (0)&\textcolor{red}{24} (0)&\textcolor{green}{26} (1)&\\ \hline
+\textcolor{green}{7} (1)&\textcolor{green}{16} (1)&\textcolor{green}{21} (1)&\textcolor{green}{26} (1)&\textcolor{red}{26} (0)&\textcolor{green}{27} (1)&\textcolor{green}{28} (1)&\\ \hline
+\textcolor{green}{7} (1)&\textcolor{green}{16} (1)&\textcolor{green}{21} (1)&\textcolor{green}{28} (1)&\textcolor{red}{28} (0)&\textcolor{red}{28} (0)&\textcolor{green}{30} (1)&\\ \hline
+\textcolor{green}{7} (1)&\textcolor{green}{16} (1)&\textcolor{green}{21} (1)&\textcolor{green}{28} (1)&\textcolor{green}{30} (1)&\textcolor{red}{30} (0)&\textcolor{green}{33} (1)&\\ \hline
+\textcolor{green}{7} (1)&\textcolor{green}{16} (1)&\textcolor{green}{21} (1)&\textcolor{green}{33} (1)&\textcolor{red}{33} (0)&\textcolor{red}{33} (0)&\textcolor{green}{34} (1)&\\ \hline
+\end{tabular}
+\end{figure}
+
+
+\section{Conclusion}
+Usando la tabla se puede deducir cuales son los items que se deberían cargar
+\end{document}

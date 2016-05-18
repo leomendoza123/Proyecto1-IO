@@ -1,0 +1,181 @@
+#include <stdio.h>
+#include <stdlib.h> 
+#include "logica.h" 
+
+void deportesBeamer(); 
+
+
+void cargaDatosALogica(){
+
+	
+
+
+	//Carga probabilidades y cantidad de juegos 
+
+	serie_instance.partidosTotales = atoi (textInputs_instance.txtcantidadDePartidos);
+	serie_instance.probabilidadEnCasa = ((float)atoi (textInputs_instance.txtprobabilidadEnCasa))/100;
+	serie_instance.probabilidadDeVisita = ((float)atoi (textInputs_instance.txtprobabilidadDeVisita))/100;
+
+	// Carga la serie
+	char * cantidad = textInputs_instance.txtserie; 
+	printf (":%s\n", cantidad); 
+
+	int x = 0; 
+	int tamamoDeSerie = 0; 
+	
+	serie_instance.Serie = (int*)calloc(100, sizeof(int));
+
+	while (x < strlen(cantidad)){
+		int largo = 0;
+		char* palabra = (char*)calloc(1, sizeof(char));
+		while(cantidad[x] != ','){
+			//printf (":::%c\n", palabra[largo-1]); 
+			largo++;
+			palabra = (char*) realloc(palabra,largo * sizeof(char));
+			palabra[largo-1] = cantidad[x++];
+		
+		}
+		x++; 
+		printf ("=%d\n", atoi (palabra)); 
+		serie_instance.Serie[tamamoDeSerie] = atoi (palabra); 
+		serie_instance.tamanoDeSerie = tamamoDeSerie; 
+		tamamoDeSerie ++; 
+	}
+
+}
+
+void recalculaSerie (){
+
+	int i =0; 
+
+	int valorAnterior = serie_instance.Serie[i++];
+	for (; i <= serie_instance.tamanoDeSerie; i++){
+		
+		serie_instance.Serie[i] = serie_instance.Serie[i]+valorAnterior; 
+		printf ("%d === %d \n", i, serie_instance.Serie[i]); 
+		valorAnterior = serie_instance.Serie[i]; 
+
+
+	}
+
+
+}
+
+
+void serie(){ 
+	tablaResultado_instance.matrix = (float **)calloc(serie_instance.partidosTotales+1,sizeof(int *));
+	int i, j, k;  
+	for (i=0; i<serie_instance.partidosTotales+1; i++){
+		tablaResultado_instance.matrix[i] = (float *)calloc(serie_instance.partidosTotales+1,sizeof(int));
+	} 
+	float usarproba1; 
+	float usarproba2;
+	int partido_actual;
+	float proba2H = 1 - serie_instance.probabilidadEnCasa; 
+	float proba2V = 1 - serie_instance.probabilidadDeVisita;  	
+
+	for(i = 0; i<= serie_instance.partidosTotales; i++){ 
+		for(j = 0; j <= serie_instance.partidosTotales; j++){
+			if(i == 0){ 
+				tablaResultado_instance.matrix[i][j] = 1; 
+				printf("Los 1: %e \n", tablaResultado_instance.matrix[i][j]);
+			} 
+			else if(j == 0){
+				tablaResultado_instance.matrix[i][j] = 0; 
+				printf("Los 0: %e \n", tablaResultado_instance.matrix[i][j]);
+			}
+		}
+	} 
+	for(i = 0; i<= serie_instance.partidosTotales; i++){ 
+		for(j = 0; j <= serie_instance.partidosTotales; j++){
+		
+			if(i == 0){ 
+				tablaResultado_instance.matrix[i][j] = 1;
+			} 
+			else if(j == 0){
+				tablaResultado_instance.matrix[i][j] = 0;
+			}  
+
+			else{  
+				partido_actual = (serie_instance.partidosTotales - j) + (serie_instance.partidosTotales - i) + 1;
+				for(k = 0; k <= serie_instance.tamanoDeSerie; k++){ 
+					printf ("%d-", serie_instance.Serie[k]); 
+					if(k == 0){
+						if(partido_actual <= serie_instance.Serie[k]){  
+							usarproba1 = serie_instance.probabilidadEnCasa; 
+							usarproba2 = proba2V;
+						}
+					}
+					else{ 
+						if(partido_actual <= serie_instance.Serie[k] && partido_actual > serie_instance.Serie[k-1] && k%2 == 0){
+							usarproba1 = serie_instance.probabilidadEnCasa; 
+							usarproba2 = proba2V;
+						} 
+						else if(partido_actual <= serie_instance.Serie[k] && partido_actual > serie_instance.Serie[k-1]){ 
+							usarproba1 = serie_instance.probabilidadDeVisita; 
+							usarproba2 = proba2H;
+						}
+					} 
+					
+				}
+				tablaResultado_instance.matrix[i][j] = tablaResultado_instance.matrix[i-1][j] * usarproba1 + tablaResultado_instance.matrix[i][j-1] * usarproba2;  
+
+			} 
+		} 
+
+	} 
+	deportesBeamer(); 
+} 
+
+
+void deportesBeamer(){
+     FILE* fp;
+    fp = fopen("temp.tex", "w");
+    int i,j;
+	
+	printf (" Imprimiendo... \n" );
+
+    fprintf(fp,"\\documentclass{article}\n\\usepackage{graphicx}\n\\usepackage[spanish]{babel}\n\\usepackage{float}\n\n\\begin{document}\n\n\\title{Predicción de series deportivas Investigación De Operaciones  (2 semestre - 2016)}\n\\author{Leonardo Mendoza - Patrick Maynard}\n\n\\maketitle\n\n\\begin{abstract}\nEste algoritmo permite saber cuales son las posibilidades de ganar en una serie de juegos. Tomando en cuenta que se tiene la probabilidad de ganar en casa y como visitante. \n\\end{abstract}\n\n\\section{Datos iniciales}\n\nEstos son los datos iniciales son\n\n\\centering \n\\begin{figure}[H]\n\\label{my-label2}\n\\begin{tabular}{|l|l|} \n\\hline\n Cantidad de partidos & %s \\\\ \\hline\n Probabilidad de ganar en casa & %s \\\\ \\hline\n Probabilidad de ganar de visita & %s \\\\ \\hline\n Serie & %s \\\\ \\hline\n\n\\end{tabular}\n\\end{figure}\n    \n\\section{Tabla de probabilidades}\n\n\n\\centering \n\\begin{figure}[H]\n\\label{my-label2}\n\\begin{tabular}{|",  textInputs_instance.txtcantidadDePartidos, textInputs_instance.txtprobabilidadEnCasa, textInputs_instance.txtprobabilidadDeVisita, textInputs_instance.txtserie );
+
+	printf (" Imprimiendo... \n" );
+	i = 0; 
+
+	while (i++ <= serie_instance.partidosTotales){
+		textInputs_instance.txtserie; 
+		 fprintf(fp,"l|"); 
+
+	}
+    	printf (" Imprimiendo... \n" );
+
+
+
+
+   	fprintf(fp,"}\n\\hline\n ");
+	i = 0; 
+	
+	for(i = 0; i<= serie_instance.partidosTotales; i++){ 
+		for(j = 0; j <= serie_instance.partidosTotales; j++){
+
+			printf ("(%d, %d) = %f \n", i,j, tablaResultado_instance.matrix[i][j]); 
+			fprintf(fp,"%f", tablaResultado_instance.matrix[i][j]); 
+			if (j!=serie_instance.partidosTotales){
+				fprintf(fp,"& "); 
+			}
+
+			} 
+		fprintf(fp,"\\\\ \\hline\n");
+	}
+		 	
+		 
+
+    
+
+fprintf(fp,"\\end{tabular}\n\\end{figure}\n\n\n\\section{Conclusion}\nUsando la tabla anterior se puede saber cuales son las probabilidades de ganar si me faltan i juegos y al equipo contrario j juegos para ganar. \n\\end{document}");
+
+
+
+	fclose (fp); 
+    system("pdflatex temp.tex");
+    system("evince --presentation temp.pdf ");
+}
+

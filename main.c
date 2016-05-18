@@ -63,6 +63,27 @@ G_MODULE_EXPORT void remplazo_clicked( GtkButton *button,  gpointer   data )
     system(filename);
 }
 
+G_MODULE_EXPORT void series_clicked( GtkButton *button,  gpointer   data )
+{
+	system("make -C SeriesDeportivas");
+    
+}
+
+
+G_MODULE_EXPORT void arboles_clicked( GtkButton *button,  gpointer   data )
+{
+	system("make -C ArbolesBinarios");
+    
+}
+
+G_MODULE_EXPORT void knapsack_clicked( GtkButton *button,  gpointer   data )
+{
+	system("make -C knapsack");
+    
+}
+
+
+
 void openfile (int tarea){
 	GtkWidget *dialog;
 

@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[spanish]{babel}
+\usepackage{float}
+
+\begin{document}
+
+\title{Predicción de series deportivas Investigación De Operaciones  (2 semestre - 2016)}
+\author{Leonardo Mendoza - Patrick Maynard}
+
+\maketitle
+
+\begin{abstract}
+Este algoritmo permite saber cuales son las posibilidades de ganar en una serie de juegos. Tomando en cuenta que se tiene la probabilidad de ganar en casa y como visitante. 
+\end{abstract}
+
+\section{Datos iniciales}
+
+Estos son los datos iniciales son
+
+\centering 
+\begin{figure}[H]
+\label{my-label2}
+\begin{tabular}{|l|l|} 
+\hline
+ Cantidad de partidos & 3 \\ \hline
+ Probabilidad de ganar en casa & 52 \\ \hline
+ Probabilidad de ganar de visita & 48 \\ \hline
+ Serie & 2,3,2 \\ \hline
+
+\end{tabular}
+\end{figure}
+    
+\section{Tabla de probabilidades}
+
+
+\centering 
+\begin{figure}[H]
+\label{my-label2}
+\begin{tabular}{|l|l|l|l|}
+\hline
+ 1,000000& 1,000000& 1,000000& 1,000000\\ \hline
+0,000000& 0,480000& 0,710400& 0,820992\\ \hline
+0,000000& 0,230400& 0,451584& 0,661739\\ \hline
+0,000000& 0,110592& 0,292331& 0,496117\\ \hline
+\end{tabular}
+\end{figure}
+
+
+\section{Conclusion}
+Usando la tabla anterior se puede saber cuales son las probabilidades de ganar si me faltan i juegos y al equipo contrario j juegos para ganar. 
+\end{document}

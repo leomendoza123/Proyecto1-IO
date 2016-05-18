@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.5.10)  18 MAY 2016 00:13
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.5.10)  18 MAY 2016 00:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -81,6 +81,14 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \float@box=\box26
 \@float@everytoks=\toks17
 \@floatcapt=\box27
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
 ) (./temp.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
@@ -88,24 +96,21 @@ LaTeX Info: Redefining \% on input line 6.
 
 LaTeX Warning: Label `my-label2' multiply defined.
 
-
-LaTeX Warning: Label `my-label2' multiply defined.
-
 )
 \openout1 = `temp.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
  (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count92
@@ -167,20 +172,16 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Info: Redefining \. on input line 6.
-LaTeX Info: Redefining \% on input line 6.
+LaTeX Info: Redefining \. on input line 8.
+LaTeX Info: Redefining \% on input line 8.
 Missing character: There is no Ã in font cmr17!
 Missing character: There is no ³ in font cmr17!
-Missing character: There is no Ã in font cmr17!
-Missing character: There is no ³ in font cmr17!
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 11.
+(Font)              <12> on input line 13.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 11.
+(Font)              <8> on input line 13.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 11.
-Missing character: There is no Ã in font cmr9!
-Missing character: There is no ¡ in font cmr9!
+(Font)              <6> on input line 13.
 Missing character: There is no Ã in font cmr9!
 Missing character: There is no º in font cmr9!
 Missing character: There is no Ã in font cmr9!
@@ -188,29 +189,27 @@ Missing character: There is no © in font cmr9!
 Missing character: There is no Ã in font cmr9!
 Missing character: There is no ³ in font cmr9!
 Missing character: There is no Ã in font cmr9!
-Missing character: There is no © in font cmr9!
+Missing character: There is no ³ in font cmr9!
+Missing character: There is no Ã in font cmr9!
+Missing character: There is no ³ in font cmr9!
 Missing character: There is no Ã in font cmr9!
 Missing character: There is no ¡ in font cmr9!
 Missing character: There is no Ã in font cmr9!
 Missing character: There is no ¡ in font cmr9!
+Missing character: There is no Ã in font cmr9!
+Missing character: There is no ­ in font cmr9!
 Missing character: There is no Ã in font cmr9!
 Missing character: There is no ¡ in font cmr9!
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 24.
+(Font)              <7> on input line 27.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 24.
-
-Overfull \hbox (42.11201pt too wide) in paragraph at lines 47--63
-[][] 
- []
+(Font)              <5> on input line 27.
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 Missing character: There is no Ã in font cmr10!
-Missing character: There is no ¡ in font cmr10!
-Missing character: There is no Ã in font cmr10!
-Missing character: There is no ³ in font cmr10!
+Missing character: There is no ­ in font cmr10!
  [2] (./temp.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
@@ -220,20 +219,20 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2256 strings out of 494966
- 30745 string characters out of 6179559
- 111160 words of memory out of 5000000
- 5469 multiletter control sequences out of 15000+600000
+ 2301 strings out of 494966
+ 31448 string characters out of 6179559
+ 104011 words of memory out of 5000000
+ 5509 multiletter control sequences out of 15000+600000
  7887 words of font info for 28 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
- 38i,7n,26p,365b,229s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,8n,26p,539b,229s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/public/amsfonts/cm/cmr9.pfb>
-Output written on temp.pdf (2 pages, 80141 bytes).
+Output written on temp.pdf (2 pages, 76633 bytes).
 PDF statistics:
  35 PDF objects out of 1000 (max. 8388607)
  24 compressed objects within 1 object stream
